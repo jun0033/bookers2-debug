@@ -4,13 +4,8 @@ class BookCommentsController < ApplicationController
     book = Book.find(params[:book_id])
     comment = current_user.book_comments.new(book_comment_params)
     comment.book_id = book.id
-    if comment.save
+    comment.save
     redirect_back fallback_location: root_path
-    else
-    @books = Book.all
-    @book = Book.new(book_params)
-    render :index
-    end
   end
 
   def destroy
